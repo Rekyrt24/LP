@@ -420,5 +420,4 @@ public class Ex20 {
         scanner.close();
     }
 }
-
 ```
