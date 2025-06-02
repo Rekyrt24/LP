@@ -18,9 +18,100 @@ Para mais informações acesse [Aula 07: Funções e Recursividade.](https://cai
 
 1. Escreva uma função que receba um número inteiro positivo $N$ e retorne a soma de todosos números inteiros de $1$ até $N$. Obs.: $N$ deve ser maior que $0$.
 
+```java 
+import java.util.Scanner;
+
+public class ex1 {
+    public static void main(String[] args) {
+        int n;
+
+        Scanner in = new Scanner(System.in);
+
+        do {
+            System.out.println("Digite um inteiro maior que zero: ");
+            n = in.nextInt();
+        } while (n <= 0);
+    }
+
+    public static int somarAntecessores(int n) {
+        int soma = 0;
+        for (int i = n; i > 0; i--) {
+            soma += i;
+        }
+        return soma;
+    }
+}
+
+```
+
 2. Implemente uma função para calcular o fatorial de um número inteiro $N$ digitado pelo usuário.
 
+```java
+import java.util.Scanner;
+
+public class ex2 {
+    public static void main(String[] args) {
+        Scanner entrada = new Scanner(System.in);
+        int n;
+
+        do{
+            System.out.println("Digite um inteiro maior que um: ");
+            n = entrada.nextInt();
+        } while (n<=1);
+
+        System.out.println("O fatorial de "+n+" é " + calcularFatorial(n));
+    }
+
+    public static int calcularFatorial(int n){
+       if(n==1)
+            return 1;
+       return n*calcularFatorial(n-1);
+    }
+}
+```
+
 3. Crie uma função para calcular a potência de um número inteiro $x$ elevado a uma potência inteira $y$. Os valores de $x$ e $y$ serão fornecidos pelo usuário. $y$ deve ser maior ou igual a zero. <font color="red">Proibido utilizar ```Math.pow(x,y)```</font>.
+
+```java
+import java.util.Scanner;
+
+public class ex3 {
+
+    public static int calcularPotencia(int base, int expoente) {
+        int resultado = 1;
+
+        for (int i = 0; i < expoente; i++) {
+            resultado *= base;
+        }
+
+        return resultado;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Digite a base (inteiro): ");
+        int base = sc.nextInt();
+
+        int expoente;
+        do {
+            System.out.print("Digite o expoente (inteiro >= 0): ");
+            expoente = sc.nextInt();
+            if (expoente < 0) {
+                System.out.println("O expoente deve ser maior ou igual a zero.");
+            }
+        } while (expoente < 0);
+
+        int resultado = calcularPotencia(base, expoente);
+
+        System.out.println(base + " elevado a " + expoente + " = " + resultado);
+
+        sc.close();
+    }
+}
+
+
+```
 
 4. Escreva uma função em Java para verificar se uma *String* é um palíndromo. A *String* deve ser digitada pelo usuário. Um palíndromo é uma palavra, frase ou sequência que se lê da mesma forma de trás para frente. 
 
