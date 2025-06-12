@@ -117,6 +117,47 @@ public class ex3 {
 
     Exemplos: “ovo”, “tenet”, “abasedotetodesaba”.
 
+```java
+import java.util.Scanner;
+
+public class ex4 {
+
+    public static boolean ehPalindromo(String texto) {
+        texto = texto.replaceAll("\\s+", "").toLowerCase();
+
+        int inicio = 0;
+        int fim = texto.length() - 1;
+
+        while (inicio < fim) {
+            if (texto.charAt(inicio) != texto.charAt(fim)) {
+                return false;
+            }
+            inicio++;
+            fim--;
+        }
+
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Digite uma palavra ou frase: ");
+        String entrada = scanner.nextLine();
+
+        if (ehPalindromo(entrada)) {
+            System.out.println("É um palíndromo!");
+        } else {
+            System.out.println("Não é um palíndromo.");
+        }
+
+        scanner.close();
+    }
+}
+
+
+```
+
 5. <font color="red">**Desista! Sem GPT você não vai conseguir!**</font> Implemente uma função para realizar uma busca binária em um array ordenado de inteiros, retornando a posição do elemento buscado ou -1 se o elemento não for encontrado. 
     
     A busca binária é um algoritmo eficiente para encontrar um elemento em um vetor ordenado. Ele funciona dividindo repetidamente o vetor pela metade e determinando em qual metade o elemento buscado pode estar presente. 
@@ -125,4 +166,113 @@ public class ex3 {
 
     ![alt text](image.png)
 
+```java 
+public class ex5 {
+
+    // Função de busca binária
+    public static int buscaBinaria(int[] array, int elemento) {
+        int inicio = 0;
+        int fim = array.length - 1;
+
+        while (inicio <= fim) {
+            int meio = (inicio + fim) / 2;
+
+            if (array[meio] == elemento) {
+                return meio; // elemento encontrado
+            } else if (array[meio] < elemento) {
+                inicio = meio + 1; // busca na metade direita
+            } else {
+                fim = meio - 1; // busca na metade esquerda
+            }
+        }
+
+        return -1; // elemento não encontrado
+    }
+
+    // Função principal
+    public static void main(String[] args) {
+        int[] numeros = {2, 4, 7, 10, 15, 20, 25, 30};
+        int alvo = 15;
+
+        int resultado = buscaBinaria(numeros, alvo);
+
+        if (resultado != -1) {
+            System.out.println("Elemento encontrado na posição: " + resultado);
+        } else {
+            System.out.println("Elemento não encontrado.");
+        }
+    }
+}
+
+```
+
 6. <font color="red">**Não há nada tão ruim que não possa piorar!**</font> Refaça todos os exercícios anteriores utilizando recursividade.
+
+```java
+import java.util.Scanner;
+
+public class ex6 {
+
+    public static boolean ehPalindromo(String texto, int inicio, int fim) {
+        if (inicio >= fim) {
+            return true;
+        }
+        if (texto.charAt(inicio) != texto.charAt(fim)) {
+            return false;
+        }
+        return ehPalindromo(texto, inicio + 1, fim - 1);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Digite uma palavra ou frase: ");
+        String entrada = scanner.nextLine();
+
+        entrada = entrada.replaceAll("\\s+", "").toLowerCase();
+
+        boolean resultado = ehPalindromo(entrada, 0, entrada.length() - 1);
+        if (resultado) {
+            System.out.println("É um palíndromo!");
+        } else {
+            System.out.println("Não é um palíndromo.");
+        }
+
+        scanner.close();
+    }
+}
+```
+        
+```java
+public class ex7 {
+
+   public static int buscaBinaria(int[] array, int inicio, int fim, int elemento) {
+      if (inicio > fim) {
+         return -1; // não encontrado
+      }
+
+      int meio = (inicio + fim) / 2;
+
+      if (array[meio] == elemento) {
+         return meio;
+      } else if (array[meio] < elemento) {
+         return buscaBinaria(array, meio + 1, fim, elemento);
+      } else {
+         return buscaBinaria(array, inicio, meio - 1, elemento);
+      }
+   }
+
+   public static void main(String[] args) {
+      int[] numeros = {2, 4, 7, 10, 15, 20, 25, 30};
+      int alvo = 15;
+
+      int resultado = buscaBinaria(numeros, 0, numeros.length - 1, alvo);
+
+      if (resultado != -1) {
+         System.out.println("Elemento encontrado na posição: " + resultado);
+      } else {
+         System.out.println("Elemento não encontrado.");
+      }
+   }
+}
+
+```
